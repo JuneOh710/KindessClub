@@ -1,27 +1,22 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const ejsMate = require('ejs-mate');
-const methodOverride = require('method-override');
+import createError from 'http-errors';
+import express from 'express';
+import { join } from 'path';
+import cookieParser from 'cookie-parser';
+import ejsMate from 'ejs-mate';
+import path from 'path'
 
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+import indexRouter from './routes/index.routes.js';
 
 const app = express();
+const __dirname = path.resolve(path.dirname(decodeURI(new URL(import.meta.url).pathname)));
 
 // view engine setup
 app.engine('ejs', ejsMate)
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/static', express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter);
 
@@ -45,4 +40,4 @@ app.use(function (err, req, res, next) {
 
 const port = 3000;
 app.listen(port, () => { console.log(`listending to port ${port}`) })
-module.exports = app;
+export default app;
