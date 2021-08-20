@@ -4,8 +4,9 @@ import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import ejsMate from 'ejs-mate';
 import path from 'path'
+import mogan from 'morgan'
 
-import indexRouter from './routes/index.routes.js';
+import homeRouter from './routes/home.routes.js';
 
 const app = express();
 const __dirname = path.resolve(path.dirname(decodeURI(new URL(import.meta.url).pathname)));
@@ -15,10 +16,12 @@ app.engine('ejs', ejsMate)
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(mogan('dev'))
 app.use(cookieParser());
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', indexRouter);
+
+app.use('/', homeRouter);
 
 
 // catch 404 and forward to error handler
@@ -34,7 +37,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', { errorMessage: err.message });
 });
 
 

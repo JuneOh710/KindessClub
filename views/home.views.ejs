@@ -2,11 +2,48 @@
 <html lang="en">
 
 <head>
-    <% include '.partials/head.ejs' %>
+    <%- include('partials/head.ejs') %>
 </head>
 
-<body>
-    hi
+<body class="container-fluid px-4 h-100">
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/tempLogo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Kindness Club
+            </a>
+            <div class="navbar-nav d-flex flex-row justify-content-evenly">
+                <a class="nav-link mx-3">login</a>
+                <a class="nav-link">register</a>
+    </nav>
+
+    <div class="row">
+        <h1>Making volunteering easier.</h1>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo soluta cupiditate, sint,
+                        delectus
+                        eveniet,
+                        veritatis sunt quae expedita facilis ad repellat incidunt enim aspernatur. Inventore
+                    </p>
+                    <a href="/dashboard" class="btn btn-outline-success">sign up & volunteer</a>
+                </div>
+                <div class="col">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo soluta cupiditate, sint,
+                        delectus
+                        eveniet,
+                        veritatis sunt quae exp
+                    </p>
+                    <a href="/dashboard" class="btn btn-outline-success">partner us</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <img src="images/flowers.svg" height="100%" width="100%" alt="person with flowers">
+        </div>
+    </div>
+    <%- include('partials/scriptTags.ejs') %>
 </body>
 
 </html>
