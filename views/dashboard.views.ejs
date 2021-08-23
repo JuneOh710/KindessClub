@@ -2,14 +2,148 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <%- include('./partials/head.ejs') %>
 </head>
 
 <body>
-    <h1>Hello, this is your dashboard</h1>
+    <%- include('./partials/navbar.ejs') %>
+
+        <!-- upcoming event cards -->
+        <div class="container mt-4">
+            <h2 class="h3">Upcoming volunteer opportunities</h2>
+            <div class="row mt-3">
+                <div class="card col-lg-3 me-4 mb-lg-0 mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">event name or description Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Modi, tenetur!
+                        </h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
+
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="#" class="btn btn-success">view event</a>
+                    </div>
+                </div>
+
+
+                <div class="card col-lg-3 me-4 mb-lg-0 mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">event name or description</h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="#" class="btn btn-success">view event</a>
+                    </div>
+                </div>
+
+                <div class="card col-lg-3 me-4 mb-lg-0 mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">event name or description</h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="#" class="btn btn-success">view event</a>
+                    </div>
+                </div>
+                <div class="card text-dark bg-light col-lg-2">
+                    <div class="card-body">
+                        <h5 class="card-title">And more!</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <a href="#" class="btn btn-outline-success">view all events</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- profile summary -->
+            <h2 class="h3 mt-5">Your profile</h2>
+            <div class="row mb-5" style="width: 100%;">
+                <div class="card mt-3 col-lg-6">
+                    <div class="card-body">
+                        <div class="d-flex">
+                            <h5 class="card-title d-inline-block"> <i class="fas fa-user me-2"></i> Steven Miller
+                            </h5>
+                            <a class="ms-auto me-3" href=""><i class="fa fa-pencil"></i></a>
+                        </div>
+
+
+                        <!-- user location -->
+                        <p class="card-text">Toronto, Ontario, Canada</a>
+                        </p>
+
+
+                        <!-- user events-->
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                        Registered upcoming events
+                                    </button>
+                                </h2>
+                                <!-- list of registered & upcoming events -->
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is
+                                        intended to demonstrate the <code>.accordion-flush</code> class. This is the
+                                        first item's accordion body.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                        aria-controls="flush-collapseTwo">
+                                        Events you starred
+                                    </button>
+                                </h2>
+                                <!-- list of events user wants to go -->
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is
+                                        intended to demonstrate the <code>.accordion-flush</code> class. This is the
+                                        second item's accordion body. Let's imagine this being filled with some actual
+                                        content.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                        aria-controls="flush-collapseThree">
+                                        Your past events
+                                    </button>
+                                </h2>
+                                <!-- list of past events user went to -->
+                                <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">Placeholder content for this accordion, which is
+                                        intended to demonstrate the <code>.accordion-flush</code> class. This is the
+                                        third item's accordion body. Nothing more exciting happening here in terms of
+                                        content, but just filling up the space to make it look, at least at first
+                                        glance, a bit more representative of how this would look in a real-world
+                                        application.</div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+        <%- include('./partials/footer.ejs') %>
+            <%- include('./partials/scriptTags.ejs') %>
 </body>
 
 </html>

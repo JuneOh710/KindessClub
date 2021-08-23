@@ -6,7 +6,7 @@ import ejsMate from 'ejs-mate';
 import path from 'path'
 import mogan from 'morgan'
 
-import homeRouter from './routes/home.routes.js';
+import router from './routes/routes.js';
 
 const app = express();
 const __dirname = path.resolve(path.dirname(decodeURI(new URL(import.meta.url).pathname)));
@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
 
 
-app.use('/', homeRouter);
+app.use('/', router);
 
 
 // catch 404 and forward to error handler

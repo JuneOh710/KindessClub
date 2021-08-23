@@ -5,11 +5,11 @@
     <%- include('partials/head.ejs') %>
 </head>
 
-<body class="container-fluid px-4 h-100">
+<body class="container-lg px-4 h-100">
     <nav class="navbar navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="images/tempLogo.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <a class="navbar-brand" href="/">
+                <img src="images/plant-1.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                 Kindness Club
             </a>
             <div class="navbar-nav d-flex flex-row justify-content-evenly">
@@ -17,32 +17,49 @@
                 <a class="nav-link">register</a>
     </nav>
 
-    <div class="row">
-        <h1>Making volunteering easier.</h1>
-        <div class="col">
+
+    <div class="row mt-5">
+        <div class="col-1"></div>
+        <div class="col-11">
             <div class="row">
+                <h1>Volunteering made easier.</h1>
+
                 <div class="col">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo soluta cupiditate, sint,
-                        delectus
-                        eveniet,
-                        veritatis sunt quae expedita facilis ad repellat incidunt enim aspernatur. Inventore
-                    </p>
-                    <a href="/dashboard" class="btn btn-outline-success">sign up & volunteer</a>
+                    <div class="row mt-4">
+                        <div class="col">
+                            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo soluta
+                                cupiditate,
+                                sint,
+                                delectus
+                                eveniet,
+                                veritatis sunt quae expedita facilis ad repellat incidunt enim aspernatur. Inventore
+                            </p>
+                            <a href="/dashboard" class="btn btn-success">sign up & volunteer</a>
+                        </div>
+                        <div class="col">
+                            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo soluta
+                                cupiditate,
+                                sint,
+                                delectus
+                                eveniet,
+                                veritatis sunt quae exp
+                            </p>
+                            <a href="/organization" class="btn btn-outline-success">partner us</a>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="col">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo soluta cupiditate, sint,
-                        delectus
-                        eveniet,
-                        veritatis sunt quae exp
-                    </p>
-                    <a href="/dashboard" class="btn btn-outline-success">partner us</a>
+                    <img src="images/sitting-together.svg" height="100%" width="100%" alt="person with flowers">
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <img src="images/flowers.svg" height="100%" width="100%" alt="person with flowers">
+
         </div>
     </div>
+
+    </div>
+
+
     <%- include('partials/scriptTags.ejs') %>
 </body>
 
