@@ -1,0 +1,10 @@
+ === todo === 
+- set up projects page
+- connect to MongoDB
+- design user schema
+- design event schema
+- set up event details page
+
+
+=== done ===
+- set up events page 

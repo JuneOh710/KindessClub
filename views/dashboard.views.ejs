@@ -19,7 +19,7 @@
                         </h5>
                         <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
 
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
                         </p>
                         <a href="#" class="btn btn-success">view event</a>
                     </div>
@@ -30,7 +30,7 @@
                     <div class="card-body">
                         <h5 class="card-title">event name or description</h5>
                         <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
                         </p>
                         <a href="#" class="btn btn-success">view event</a>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <h5 class="card-title">event name or description</h5>
                         <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
                         </p>
                         <a href="#" class="btn btn-success">view event</a>
                     </div>
@@ -48,7 +48,7 @@
                 <div class="card text-dark bg-light col-lg-2">
                     <div class="card-body">
                         <h5 class="card-title">And more!</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, ut?
                         </p>
                         <a href="#" class="btn btn-outline-success">view all events</a>
                     </div>
@@ -144,6 +144,17 @@
         </div>
         <%- include('./partials/footer.ejs') %>
             <%- include('./partials/scriptTags.ejs') %>
+                <script>
+                    const pageName = "dashboard"
+                    const navLinks = document.querySelectorAll(".nav-link");
+                    navLinks.forEach(link => {
+                        if (link.id === pageName) {
+                            link.classList.add("active")
+                        } else {
+                            link.classList = ["nav-link"]
+                        }
+                    })
+                </script>
 </body>
 
 </html>

@@ -9,4 +9,9 @@ router.get('/', function (req, res, next) {
 router.get('/dashboard', function (req, res, next) {
   res.render('dashboard.views.ejs');
 })
+
+router.get('/events', function (req, res, next) {
+  res.render('events.views.ejs')
+})
+
 export default router;

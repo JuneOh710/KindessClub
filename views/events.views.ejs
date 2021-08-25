@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body class>
+    <%- include('./partials/navbar.ejs') %>
+        <main class="min-vh-100 ms-md-5 ps-4 mb-5">
+            <h1 class="mt-4 mb-2">All volunteer opportunities</h1>
+            <!-- search & filter -->
+            <form action="" class="mb-3">
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <input type="text" id="search" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+                    <div class="col-auto">
+                        <label for="search" class="col-form-label">Search</label>
+                    </div>
+                    <div class="col-auto">
+                        <span id="searchHelpInline" class="form-text">
+                            filter by <a href="">location</a> | <a href="">cause</a> | <a href="">date</a>
+                        </span>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="row">
+                <!-- map -->
+                <div class="col-md-7">
+                    <div id='map' style='width: 100%; height: 75vh;'></div>
+                </div>
+                <!-- event card list -->
+                <div class="col-md-5 event-list">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">event name or description</h5>
+                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
+                            </p>
+                            <a href="#" class="btn btn-success">view event</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">event name or description</h5>
+                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
+                            </p>
+                            <a href="#" class="btn btn-success">view event</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">event name or description</h5>
+                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
+                            </p>
+                            <a href="#" class="btn btn-success">view event</a>
+                        </div>
+                    </div>
+
+
+                    <nav class="mt-2" aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+
+
+
+
+        </main>
+
+
+
+        <%- include('./partials/footer.ejs') %>
+            <%- include('./partials/scriptTags.ejs') %>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg';
+                    const map = new mapboxgl.Map({
+                        container: 'map', // container ID
+                        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                        center: [-74.5, 40], // starting position [lng, lat]
+                        zoom: 9 // starting zoom
+                    });
+                </script>
+
+                <script>
+                    const pageName = "events"
+                    const navLinks = document.querySelectorAll(".nav-link");
+                    navLinks.forEach(link => {
+                        if (link.id === pageName) {
+                            link.classList.add("active")
+                        } else {
+                            link.classList = ["nav-link"]
+                        }
+                    })
+                </script>
+</body>
+
+</html>
