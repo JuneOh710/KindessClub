@@ -1,0 +1,11 @@
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+        center: [-79.347015, 43.651070], // starting position [lng, lat]
+        zoom: 12 // starting zoom
+    });
+    map.scrollZoom.disable()
+    map.addControl(new mapboxgl.NavigationControl())
+</script>

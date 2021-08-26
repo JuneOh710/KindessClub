@@ -44,7 +44,7 @@
                                 <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
                             </p>
 
-                            <a href="#" class="btn btn-success btn-sm">view event</a>
+                            <a href="/events/event" class="btn btn-success btn-sm">view event</a>
                         </div>
                     </div>
                     <div class="card">
@@ -54,7 +54,7 @@
                                 <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
                             </p>
 
-                            <a href="#" class="btn btn-success btn-sm">view event</a>
+                            <a href="/events/event" class="btn btn-success btn-sm">view event</a>
                         </div>
                     </div>
                     <div class="card">
@@ -64,7 +64,7 @@
                                 <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
                             </p>
 
-                            <a href="#" class="btn btn-success btn-sm">view event</a>
+                            <a href="/events/event" class="btn btn-success btn-sm">view event</a>
                         </div>
                     </div>
                     <div class="card">
@@ -74,7 +74,7 @@
                                 <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
                             </p>
 
-                            <a href="#" class="btn btn-success btn-sm">view event</a>
+                            <a href="/events/event" class="btn btn-success btn-sm">view event</a>
                         </div>
                     </div>
 
@@ -102,23 +102,13 @@
 
         <%- include('./partials/footer.ejs') %>
             <%- include('./partials/scriptTags.ejs') %>
-                <script>
-                    mapboxgl.accessToken = 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg';
-                    const map = new mapboxgl.Map({
-                        container: 'map', // container ID
-                        style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                        center: [-79.347015, 43.651070], // starting position [lng, lat]
-                        zoom: 11 // starting zoom
-                    });
-                    map.scrollZoom.disable()
-                    map.addControl(new mapboxgl.NavigationControl())
-                </script>
+                <%- include('./partials/mapbox.ejs') %>
 
-                <script>
-                    const pageName = "events"
-                    const navLink = document.getElementById(pageName);
-                    navLink.classList.add("active")
-                </script>
+                    <script>
+                        const pageName = "events"
+                        const navLink = document.getElementById(pageName);
+                        navLink.classList.add("active")
+                    </script>
 </body>
 
 </html>

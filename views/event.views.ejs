@@ -7,13 +7,54 @@
 
 <body>
     <%- include('./partials/navbar.ejs') %>
+        <main class="container min-vh-100">
 
-        hi
+
+            <div class="row mt-md-5 mt-4 mb-5">
+                <div class="col-lg-6 mb-lg-0 mb-4">
+                    <h1 class="">VM Webinar: Youth Engagement</h1>
+
+                    <p class="ms-md-2"><i class="fas fa-calendar-alt me-2"></i>2001-09-18
+                        <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
+                    </p>
+                    <h2 class="h3">Event details</h2>
+                    <p class="lead">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut impedit eveniet quae, debitis
+                        aspernatur vitae libero molestias quis repudiandae maiores, atque quaerat labore obcaecati
+                        quidem possimus eos natus ea sint.
+                    </p>
+                    <h4>Registration & Cancellation Policy</h4>
+                    <p>
+                        Registrations are accepted at the discretion of Volunteer Toronto. No refunds will be issued for
+                        cancellations received within 48 hours of an event. Registration can be transferred to another
+                        member of your organization.
+                    </p>
+                    <a href="#" class="btn btn-success mt-auto">Register</a>
+                    <a href="#" class="btn btn-outline-success">Save for later</a>
+                </div>
+                <div class="col-lg-6">
+                    <div id='map' style='width: 100%; height: 75vh;'></div>
+                </div>
+            </div>
+
+        </main>
+
 
 
 
         <%- include('./partials/footer.ejs') %>
             <%- include('./partials/scriptTags.ejs') %>
+                <script>
+                    mapboxgl.accessToken = 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg';
+                    const map = new mapboxgl.Map({
+                        container: 'map', // container ID
+                        style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                        center: [-79.347015, 43.651070], // starting position [lng, lat]
+                        zoom: 15 // starting zoom
+                    });
+                    map.scrollZoom.disable()
+                    map.addControl(new mapboxgl.NavigationControl())
+                </script>
 </body>
 
 </html>
