@@ -14,4 +14,12 @@ router.get('/events', function (req, res, next) {
   res.render('events.views.ejs')
 })
 
+router.get('/projects', function (req, res, next) {
+  res.render('projects.views.ejs')
+})
+
+router.get('/events/event', function (req, res, next) {
+  res.render('event.views.ejs')
+})
+
 export default router;

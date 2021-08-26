@@ -5,9 +5,9 @@
     <%- include('./partials/head.ejs') %>
 </head>
 
-<body class>
+<body>
     <%- include('./partials/navbar.ejs') %>
-        <main class="min-vh-100 ms-md-5 ps-4 mb-5">
+        <main class="min-vh-100 ms-md-5 ps-md-4 ps-1 mb-5">
             <h1 class="mt-4 mb-2">All volunteer opportunities</h1>
             <!-- search & filter -->
             <form action="" class="mb-3">
@@ -15,12 +15,14 @@
                     <div class="col-auto">
                         <input type="text" id="search" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
-                    <div class="col-auto">
-                        <label for="search" class="col-form-label">Search</label>
+                    <div class="col-auto" style="padding-left: 0px">
+                        <label for="search" class="col-form-label"><button
+                                style="padding-top: 7px; padding-bottom: 7px;"
+                                class="btn btn-outline-success btn-sm">Search</button></label>
                     </div>
                     <div class="col-auto">
                         <span id="searchHelpInline" class="form-text">
-                            filter by <a href="">location</a> | <a href="">cause</a> | <a href="">date</a>
+                            filter by <a href="">location</a> | <a href="">category</a> | <a href="">date</a>
                         </span>
                     </div>
                 </div>
@@ -34,33 +36,45 @@
                 </div>
                 <!-- event card list -->
                 <div class="col-md-5 event-list">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">event name or description</h5>
-                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
-                            </p>
-                            <a href="#" class="btn btn-success">view event</a>
-                        </div>
-                    </div>
 
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">event name or description</h5>
-                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
+                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18
+                                <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
                             </p>
-                            <a href="#" class="btn btn-success">view event</a>
+
+                            <a href="#" class="btn btn-success btn-sm">view event</a>
                         </div>
                     </div>
-
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">event name or description</h5>
-                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18</p>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, quod!
+                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18
+                                <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
                             </p>
-                            <a href="#" class="btn btn-success">view event</a>
+
+                            <a href="#" class="btn btn-success btn-sm">view event</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">event name or description</h5>
+                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18
+                                <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
+                            </p>
+
+                            <a href="#" class="btn btn-success btn-sm">view event</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">event name or description</h5>
+                            <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>2001-09-18
+                                <i class="ms-3 me-2 far fa-clock"></i>9:30 am - 2:00 pm
+                            </p>
+
+                            <a href="#" class="btn btn-success btn-sm">view event</a>
                         </div>
                     </div>
 
@@ -93,21 +107,17 @@
                     const map = new mapboxgl.Map({
                         container: 'map', // container ID
                         style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                        center: [-74.5, 40], // starting position [lng, lat]
-                        zoom: 9 // starting zoom
+                        center: [-79.347015, 43.651070], // starting position [lng, lat]
+                        zoom: 11 // starting zoom
                     });
+                    map.scrollZoom.disable()
+                    map.addControl(new mapboxgl.NavigationControl())
                 </script>
 
                 <script>
                     const pageName = "events"
-                    const navLinks = document.querySelectorAll(".nav-link");
-                    navLinks.forEach(link => {
-                        if (link.id === pageName) {
-                            link.classList.add("active")
-                        } else {
-                            link.classList = ["nav-link"]
-                        }
-                    })
+                    const navLink = document.getElementById(pageName);
+                    navLink.classList.add("active")
                 </script>
 </body>
 

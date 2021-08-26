@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./partials/navbar.ejs') %>
+
+        <main class="min-vh-100 container mb-5">
+            <h1 class="mt-4">Projects by Kindness Club</h1>
+
+            <div class="row mt-4 mb-5">
+                <div class="col-md-6">
+                    <img src="images/cooking-2.svg" alt="">
+                </div>
+                <div class="col-md-6">
+                    <h2>Food is love</h2>
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis eligendi
+                        adipisci quas
+                        soluta eius facilis autem id maxime itaque, accusamus quasi aperiam numquam earum corporis
+                        facere? Quo culpa illum optio.</p>
+                    <a href="" class="btn btn-success">contribute to project</a>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <h2>Another project by us</h2>
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque maiores pariatur
+                        repudiandae
+                        commodi reiciendis eum accusantium possimus quos ut porro? Tenetur asperiores in quas velit
+                        eveniet fugiat nesciunt cum numquam!</p>
+                    <a href="" class="btn btn-success">contribute to project</a>
+
+                </div>
+                <div class="col-md-6">
+                    <img src="images/brother-nature.svg" alt="">
+                </div>
+            </div>
+        </main>
+
+        <%- include('./partials/footer.ejs') %>
+            <%- include('./partials/scriptTags.ejs') %>
+                <script>
+                    const pageName = "projects"
+                    const navLink = document.getElementById(pageName);
+                    navLink.classList.add("active")
+                </script>
+</body>
+
+</html>
