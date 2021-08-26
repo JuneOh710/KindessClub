@@ -5,8 +5,15 @@ import cookieParser from 'cookie-parser';
 import ejsMate from 'ejs-mate';
 import path from 'path'
 import mogan from 'morgan'
+import mongoose from 'mongoose'
 
 import router from './routes/routes.js';
+
+
+mongoose.connect('mongodb://localhost:27017/kindness')
+  .then(console.log('Database connected'))
+  .catch(err => console.log('connection error:', err))
+
 
 const app = express();
 const __dirname = path.resolve(path.dirname(decodeURI(new URL(import.meta.url).pathname)));
@@ -20,7 +27,7 @@ app.use(mogan('dev'))
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
 
-
+// routes
 app.use('/', router);
 
 
