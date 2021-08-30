@@ -3,34 +3,43 @@ import express from 'express';
 import { join } from 'path';
 import cookieParser from 'cookie-parser';
 import ejsMate from 'ejs-mate';
-import path from 'path'
-import mogan from 'morgan'
-import mongoose from 'mongoose'
-
+import path from 'path';
+import mogan from 'morgan';
+import mongoose from 'mongoose';
+// route imports
 import router from './routes/routes.js';
+import eventsRouter from './routes/events.routes.js';
+import projectsRouter from './routes/projects.routes.js';
+import orgRouter from './routes/org.routes.js';
 
 
 mongoose.connect('mongodb://localhost:27017/kindness')
   .then(console.log('Database connected'))
-  .catch(err => console.log('connection error:', err))
+  .catch(err => console.log('connection error:', err));
 
 
 const app = express();
 const __dirname = path.resolve(path.dirname(decodeURI(new URL(import.meta.url).pathname)));
 
 // view engine setup
-app.engine('ejs', ejsMate)
+app.engine('ejs', ejsMate);
 app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(mogan('dev'))
+app.use(mogan('dev'));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 
-// routes
+// routers
 app.use('/', router);
+app.use('/events', eventsRouter);
+app.use('/projects', projectsRouter);
+app.use('/org', orgRouter);
 
 
+app.all('*', function (req, res, next) {
+  next(createError(404));
+})
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
@@ -49,5 +58,5 @@ app.use(function (err, req, res, next) {
 
 
 const port = (process.env.PORT || 3000);
-app.listen(port, () => { console.log(`listending to port ${port}`) })
+app.listen(port, () => { console.log(`listending to port ${port}`) });
 export default app;

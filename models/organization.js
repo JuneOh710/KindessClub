@@ -1,11 +1,7 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
+const organizationSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true
     },
@@ -24,15 +20,11 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     },
-    savedEvents: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Event'
-    }],
-    registeredEvents: [{
+    events: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event'
     }]
 });
 
-const User = mongoose.model('User', userSchema);
-export default User;
+const Organization = mongoose.model('Organization', organizationSchema);
+export default Organization;

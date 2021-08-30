@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 
+// min max date logic
 const today = new Date();
 let [year, month, day] = [today.getFullYear(), today.getMonth() + 1, today.getDate()];
 const maxYear = year + 1;
@@ -39,6 +40,10 @@ const eventSchema = new mongoose.Schema({
             type: [Number],
             required: true
         }
+    },
+    organization: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Organization'
     }
 });
 
