@@ -3,12 +3,6 @@
 
 <head>
     <%- include('./partials/head.ejs') %>
-        <!-- Load the `mapbox-gl-geocoder` plugin. -->
-        <script
-            src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
-        <link rel="stylesheet"
-            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
-            type="text/css">
 </head>
 
 <body>
@@ -24,7 +18,10 @@
 
 
     <main class="min-vh-100 container">
-        <form class="row g-3 needs-validation mt-sm-3" action="/org" method="POST" novalidate>
+
+
+
+        <form class="row g-3 needs-validation mt-sm-3" action="/org/events" method="POST" novalidate>
             <!-- first row -->
             <!-- event name -->
             <div class="col-md-4">
@@ -148,9 +145,11 @@
 
 
             <!-- map -->
-            <label for="eventLocation" class="form-label">Location</label>
-            <input id="eventLocationType" name="eventLocationType" type="hidden" value="" />
-            <input id="eventLocationCoordinates" name="eventLocationCoordinates" type="hidden" value="" />
+            <label for="eventLocation" class="form-label">Event location</label>
+            <input id="eventLocationType" name="eventLocationType" type="hidden" value="" class="form-control"
+                required />
+            <input id="eventLocationCoordinates" name="eventLocationCoordinates" type="hidden" value=""
+                class="form-control" required />
             <div class="d-flex justify-content-center">
 
                 <div id="map" style='width: 99%; height: 40vh;'></div>

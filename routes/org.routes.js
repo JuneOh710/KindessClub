@@ -6,9 +6,13 @@ const orgRouter = Router();
 
 orgRouter.get('/', controller.renderOrgHome);
 
+// register organization
+orgRouter.get('/register', controller.renderRegisterForm);
+orgRouter.post('/', asyncHandle(controller.saveOrganization));
+
 // add event
 orgRouter.get('/add', controller.renderNewEventForm);
-orgRouter.post('/', asyncHandle(controller.saveEvent));
+orgRouter.post('/events', asyncHandle(controller.saveEvent));
 
 
 

@@ -16,7 +16,9 @@
                 <a class="nav-link">logout</a>
     </nav>
     <main class="min-vh-100 container">
-        <form class="row g-3 needs-validation mt-5" novalidate>
+
+
+        <form class="row g-3 needs-validation mt-5" action="/org" method="POST" novalidate>
             <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Organization name</label>
                 <input type="text" class="form-control" id="validationCustom01" required>
@@ -36,7 +38,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+
+
+
+
+            <!-- map -->
+            <label for="eventLocation" class="form-label">Location</label>
+            <input id="eventLocationType" name="eventLocationType" type="hidden" value="" class="form-control"
+                required />
+            <input id="eventLocationCoordinates" name="eventLocationCoordinates" type="hidden" value=""
+                class="form-control" required />
+            <div class="d-flex justify-content-center">
+                <div id="map" style='width: 99%; height: 40vh;'></div>
+            </div>
+
+
+            <!-- <div class="col-md-6">
                 <label for="validationCustom03" class="form-label">City</label>
                 <input type="text" class="form-control" id="validationCustom03" required>
                 <div class="invalid-feedback">
@@ -60,7 +77,9 @@
                 <div class="invalid-feedback">
                     Please provide a valid postal code.
                 </div>
-            </div>
+            </div> -->
+
+
             <div class="col-12">
                 <button class="btn btn-success" type="submit">Submit form</button>
             </div>
@@ -68,7 +87,8 @@
     </main>
 
     <%- include('./partials/footer.ejs') %>
-        <%- include('./partials/scriptTags.ejs') %>
+        <%- include('./partials/mapbox.geocoder.ejs') %>
+            <%- include('./partials/scriptTags.ejs') %>
 </body>
 
 </html>
