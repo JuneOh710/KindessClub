@@ -29,6 +29,7 @@ app.set('view engine', 'ejs');
 app.use(mogan('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }))
 
 // routers
 app.use('/', router);

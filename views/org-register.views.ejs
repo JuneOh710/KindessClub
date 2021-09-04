@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/images/plant-1.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Kindness Club
+            </a>
+            <div class="navbar-nav d-flex flex-row justify-content-evenly">
+                <a class="nav-link">logout</a>
+    </nav>
+    <main class="min-vh-100 container">
+        <form class="row g-3 needs-validation mt-5" novalidate>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Organization name</label>
+                <input type="text" class="form-control" id="validationCustom01" required>
+                <div class="invalid-feedback">
+                    Cannot leave this field empty.
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="validationCustomUsername" class="form-label">Email</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" class="form-control" id="validationCustomUsername"
+                        aria-describedby="inputGroupPrepend" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid email.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">City</label>
+                <input type="text" class="form-control" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    Please provide a valid city.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom04" class="form-label">Province</label>
+                <select class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="ON">Ontario</option>
+                    <option value="BC">British Columbia</option>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a valid state.
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="validationCustom05" class="form-label">Postal code</label>
+                <input type="text" class="form-control" id="validationCustom05" required>
+                <div class="invalid-feedback">
+                    Please provide a valid postal code.
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-success" type="submit">Submit form</button>
+            </div>
+        </form>
+    </main>
+
+    <%- include('./partials/footer.ejs') %>
+        <%- include('./partials/scriptTags.ejs') %>
+</body>
+
+</html>
