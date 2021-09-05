@@ -6,6 +6,8 @@ import passport from 'passport';
 
 const orgRouter = Router();
 
+
+
 orgRouter.get('/', controller.renderOrgHome);
 
 // register organization

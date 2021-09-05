@@ -1,3 +1,4 @@
 node_modules/
 bin/www
 .DS_Store
+.env

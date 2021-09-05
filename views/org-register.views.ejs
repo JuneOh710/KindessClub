@@ -6,73 +6,65 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">
-                <img src="/images/plant-1.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                Kindness Club
-            </a>
-            <div class="navbar-nav d-flex flex-row justify-content-evenly me-sm-5 me-2">
-                <a class="nav-link">logout</a>
-            </div>
-    </nav>
-    <main class="min-vh-100 container">
-
-        <!-- form   -->
-        <form class="row g-3 needs-validation mt-5" action="/org" method="POST" novalidate>
-            <div class="col-md-4">
-                <label for="orgName" class="form-label">Organization name</label>
-                <input type="text" name="orgName" class="form-control" id="orgName" required>
-                <div class="invalid-feedback">
-                    Cannot leave this field empty.
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <label for="orgEmail" class="form-label">Email</label>
-                <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend">@</span>
-                    <input type="email" name="orgEmail" class="form-control" id="orgEmail"
-                        aria-describedby="inputGroupPrepend" required>
+    <%- include('./partials/org-navbar.ejs') %>
+        <main class="min-vh-100 container">
+            <h1 class="mt-3">Register organization account</h1>
+            <!-- form   -->
+            <form class="row g-3 needs-validation mt-2" action="/org" method="POST" novalidate>
+                <div class="col-md-4">
+                    <label for="orgName" class="form-label">Organization name</label>
+                    <input type="text" name="orgName" class="form-control" id="orgName" required>
                     <div class="invalid-feedback">
-                        Please provide a valid email.
+                        Cannot leave this field empty.
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <label for="orgPassword" class="form-label">Password</label>
-                <input type="password" name="orgPassword" class="form-control" id="orgPassword" required>
-                <div class="invalid-feedback">
-                    Cannot leave this field empty.
+
+                <div class="col-md-4">
+                    <label for="orgEmail" class="form-label">Email</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        <input type="email" name="orgEmail" class="form-control" id="orgEmail"
+                            aria-describedby="inputGroupPrepend" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid email.
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="col-md-4">
+                    <label for="orgPassword" class="form-label">Password</label>
+                    <input type="password" name="orgPassword" class="form-control" id="orgPassword" required>
+                    <div class="invalid-feedback">
+                        Cannot leave this field empty.
+                    </div>
+                </div>
 
 
 
 
-            <!-- map -->
-            <label for="orgLocation" class="form-label">Organization Location</label>
-            <input id="orgLocationType" name="orgLocationType" type="hidden" value="" class="form-control" required />
-            <input id="orgLocationCoordinates" name="orgLocationCoordinates" type="hidden" value="" class="form-control"
-                required />
+                <!-- map -->
+                <label for="orgLocation" class="form-label">Organization Location</label>
+                <input id="orgLocationType" name="orgLocationType" type="hidden" value="" class="form-control"
+                    required />
+                <input id="orgLocationCoordinates" name="orgLocationCoordinates" type="hidden" value=""
+                    class="form-control" required />
 
-            <div class="d-flex justify-content-center">
-                <div id="map" style='width: 99%; height: 40vh;'></div>
-            </div>
+                <div class="d-flex justify-content-center">
+                    <div id="map" style='width: 99%; height: 40vh;'></div>
+                </div>
 
-            <div class="col-12">
-                <button class="btn btn-success" type="submit">Register account</button>
-            </div>
-        </form>
-    </main>
+                <div class="col-12">
+                    <button class="btn btn-success" type="submit">Register account</button>
+                </div>
+            </form>
+        </main>
 
-    <script>
-        const locationTypeId = 'orgLocationType';
-        const locationCoordinatesId = 'orgLocationCoordinates';
-    </script>
-    <%- include('./partials/footer.ejs') %>
-        <%- include('./partials/mapbox.geocoder.ejs') %>
-            <%- include('./partials/scriptTags.ejs') %>
+        <script>
+            const locationTypeId = 'orgLocationType';
+            const locationCoordinatesId = 'orgLocationCoordinates';
+        </script>
+        <%- include('./partials/footer.ejs') %>
+            <%- include('./partials/mapbox.geocoder.ejs') %>
+                <%- include('./partials/scriptTags.ejs') %>
 </body>
 
 </html>

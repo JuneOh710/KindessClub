@@ -9,38 +9,36 @@
 
     <%- include('./partials/flash.ejs') %>
 
-        <nav class="navbar navbar-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/">
-                    <img src="/images/plant-1.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                    Kindness Club
-                </a>
-                <div class="navbar-nav d-flex flex-row justify-content-evenly">
-                    <a class="nav-link">logout</a>
-        </nav>
+        <%- include('./partials/org-navbar.ejs') %>
 
-        <div class="d-flex flex-column align-items-center justify-content-center mt-5 mp-5">
+            <div class="d-flex flex-column align-items-center justify-content-center mt-5 mp-5">
 
-            <h1 class="h3 mb-5">Welcome to Kindness Club!</h1>
-            <img src="/images/desk.svg" alt="" width="30%" height="30%">
+                <h1 class="h3 mb-5">Welcome to Kindness Club!</h1>
+                <img src="/images/desk.svg" alt="" width="30%" height="30%">
 
 
-            <div class="d-grid gap-2 col-6 mx-auto mt-3">
-                <a href="/org/add" class="btn btn-outline-success mb-2">Add your event</a>
-                <a href="/dashboard" class="btn btn-outline-success">View added events</a>
+                <div class="d-grid gap-2 col-6 mx-auto mt-3">
+                    <% if (!currentUser) { %>
+                        <a href="/org/register" class="btn btn-outline-success mb-2">Register organization
+                            account</a>
+                        <a href="/org/login" class="btn btn-outline-success">Login to account</a>
+                        <% } else { %>
+                            <a href="/org/add" class="btn btn-outline-success mb-2">Add your event</a>
+                            <a href="/dashboard" class="btn btn-outline-success">View added events</a>
+                            <% } %>
+                </div>
             </div>
-        </div>
 
 
 
 
-        <%- include('./partials/scriptTags.ejs') %>
-            <script>
-                const alertList = document.querySelectorAll('.alert')
-                alertList.forEach(function (alert) {
-                    new bootstrap.Alert(alert)
-                })
-            </script>
+            <%- include('./partials/scriptTags.ejs') %>
+                <script>
+                    const alertList = document.querySelectorAll('.alert')
+                    alertList.forEach(function (alert) {
+                        new bootstrap.Alert(alert)
+                    })
+                </script>
 </body>
 
 </html>
