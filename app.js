@@ -6,6 +6,13 @@ import ejsMate from 'ejs-mate';
 import path from 'path';
 import mogan from 'morgan';
 import mongoose from 'mongoose';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import Organization from './models/organization.js';
+import passport from 'passport';
+import LocalStrategy from 'passport-local';
+import flash from 'connect-flash';
+
 // route imports
 import router from './routes/routes.js';
 import eventsRouter from './routes/events.routes.js';
@@ -29,7 +36,43 @@ app.set('view engine', 'ejs');
 app.use(mogan('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+app.use(flash());
+// session middleware
+const oneWeek = 1000 * 60 * 60 * 24 * 7;
+const secret = process.env.SESSION_SECRET || 'BlenderBottle';
+const mongoUrl = process.env.atlasUrl || 'mongodb://localhost/kindness';
+app.use(session({
+  secret: secret,
+  store: MongoStore.create({
+    mongoUrl: mongoUrl,
+    touchAfter: 24 * 3600,
+    secret: secret
+  }),
+  name: 'kindnessSession',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expires: Date.now() + oneWeek,
+    maxAge: oneWeek
+  }
+}));
+
+// flash middleware
+app.use(function (req, res, next) {
+  // make res.locals.X available as X in files rendering in this request cycle. 
+  res.locals.currentUser = req.user  // included in req body by passport.js 
+  res.locals.success = req.flash('success')  // undefined unless created new spot
+  res.locals.error = req.flash('error')
+  next()
+})
+// auth middleware
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(Organization.authenticate()));
+passport.serializeUser(Organization.serializeUser());
+passport.deserializeUser(Organization.deserializeUser());
 
 // routers
 app.use('/', router);
@@ -41,6 +84,7 @@ app.use('/org', orgRouter);
 app.all('*', function (req, res, next) {
   next(createError(404));
 })
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

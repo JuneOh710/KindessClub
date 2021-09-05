@@ -13,7 +13,8 @@
                 Kindness Club
             </a>
             <div class="navbar-nav d-flex flex-row justify-content-evenly">
-                <a class="nav-link">logout</a>
+                <a class="nav-link me-sm-5 me-2">logout</a>
+            </div>
     </nav>
 
 
@@ -168,6 +169,10 @@
         </form>
     </main>
 
+    <script>
+        const locationTypeId = 'eventLocationType';
+        const locationCoordinatesId = 'eventLocationCoordinates';
+    </script>
     <%- include('./partials/footer.ejs') %>
         <%- include('./partials/mapbox.geocoder.ejs') %>
             <%- include('./partials/scriptTags.ejs') %>

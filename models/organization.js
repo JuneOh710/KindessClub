@@ -1,18 +1,26 @@
 import mongoose from 'mongoose';
+import passportLocalMongoose from 'passport-local-mongoose';
 
 const organizationSchema = new mongoose.Schema({
-    validated: {
+    verified: {
         type: Boolean,
         required: true,
         default: false
     },
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
+    },
+    username: {
+        type: String,
+        required: true,
+        unique: true
     },
     location: {
         type: {
@@ -30,6 +38,9 @@ const organizationSchema = new mongoose.Schema({
         ref: 'Event'
     }]
 });
+
+// add password and username field (name)
+organizationSchema.plugin(passportLocalMongoose);
 
 const Organization = mongoose.model('Organization', organizationSchema);
 export default Organization;

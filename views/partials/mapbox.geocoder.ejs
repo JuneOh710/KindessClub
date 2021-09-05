@@ -15,7 +15,7 @@
         accessToken: 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg', // Set the access token
         mapboxgl: mapboxgl, // Set the mapbox-gl instance
         marker: true, // Do not use the default marker style
-        placeholder: 'Search for your event location', // Placeholder text for the search bar
+        placeholder: 'Search...', // Placeholder text for the search bar
         bbox: [-80.30937, 42.84214, -78.23715, 44.89838], // Boundary for Toronto
         proximity: {
             longitude: -79.347015,
@@ -38,14 +38,14 @@
         });
 
         // get input field <eventLocation>
-        const eventLocationType = document.getElementById('eventLocationType');
-        const eventLocationCoordinates = document.getElementById('eventLocationCoordinates');
+        const locationType = document.getElementById(locationTypeId);
+        const locationCoordinates = document.getElementById(locationCoordinatesId);
         // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
         //  Add a marker at the result's coordinates
         geocoder.on('result', ({ result }) => {
             map.getSource('single-point').setData(result.geometry);
-            eventLocationType.value = result.geometry.type;
-            eventLocationCoordinates.value = result.geometry.coordinates;
+            locationType.value = result.geometry.type;
+            locationCoordinates.value = result.geometry.coordinates;
         });
     });
     map.scrollZoom.disable();

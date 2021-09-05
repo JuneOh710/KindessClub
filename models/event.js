@@ -44,7 +44,11 @@ const eventSchema = new mongoose.Schema({
     organization: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Organization'
-    }
+    },
+    registeredUsers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 });
 
 const Event = mongoose.model('Event', eventSchema);
