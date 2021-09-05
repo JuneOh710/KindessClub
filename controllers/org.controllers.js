@@ -33,3 +33,10 @@ export const redirectOrgHome = function (req, res, next) {
     req.flash('success', 'logged in successfuly')
     res.redirect('/org');
 }
+
+// logout
+export const logoutOrg = function (req, res, next) {
+    req.logout();
+    req.flash('success', 'logged out');
+    res.redirect('/org');
+}

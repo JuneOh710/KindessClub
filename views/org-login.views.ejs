@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <nav class="navbar navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/images/plant-1.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                Kindness Club
+            </a>
+            <div class="navbar-nav d-flex flex-row justify-content-evenly me-sm-5 me-2">
+                <a class="nav-link">logout</a>
+            </div>
+    </nav>
+    <main class="min-vh-100 container">
+        <%- include('./partials/flash.ejs') %>
+            <h1 class="mt-md-4 mt-3">Login</h1>
+            <!-- form   -->
+            <form class="row g-3 needs-validation mt-3" action="/org/login" method="POST" novalidate>
+
+                <div class="col-md-6">
+                    <label for="orgEmail" class="form-label">Email</label>
+                    <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend">@</span>
+                        <input type="email" name="username" class="form-control" id="orgEmail"
+                            aria-describedby="inputGroupPrepend" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid email.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="orgPassword" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="orgPassword" required>
+                    <div class="invalid-feedback">
+                        Cannot leave this field empty.
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+                    <button class="btn btn-success" type="submit">Login</button>
+                </div>
+            </form>
+    </main>
+
+
+    <%- include('./partials/footer.ejs') %>
+        <%- include('./partials/scriptTags.ejs') %>
+</body>
+
+</html>
