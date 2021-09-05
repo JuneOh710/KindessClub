@@ -1,0 +1,24 @@
+<nav class="navbar navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/images/plant-1.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Kindness Club
+        </a>
+
+        <ul class="nav navbar-nav d-flex flex-row">
+            <% if (!currentUser) { %>
+                <li>
+                    <a class="nav-link me-3" href="/org/login">login</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/org/register">register</a>
+                </li>
+
+                <% } else { %>
+                    <li class="nav-link">
+                        <a class="nav-link" href="/org/logout">logout</a>
+                    </li>
+                    <% } %>
+        </ul>
+
+</nav>
