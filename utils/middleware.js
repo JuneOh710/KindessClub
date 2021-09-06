@@ -10,7 +10,7 @@ export const orgLoggedIn = function (req, res, next) {
 }
 
 export const isVerified = async function (req, res, next) {
-    if (!req.user.verfied) {
+    if (!req.user.verified) {
         req.flash('error', 'request failed');
         return res.redirect('/org/get-verified');
     }
