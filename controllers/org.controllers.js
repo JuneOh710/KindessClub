@@ -40,3 +40,8 @@ export const logoutOrg = function (req, res, next) {
     req.flash('success', 'logged out');
     res.redirect('/org');
 }
+
+// get verified
+export const renderGetVerified = function (req, res, next) {
+    res.render('org-get-verified.views.ejs');
+}
