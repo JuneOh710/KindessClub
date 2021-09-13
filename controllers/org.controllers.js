@@ -45,3 +45,8 @@ export const logoutOrg = function (req, res, next) {
 export const renderGetVerified = function (req, res, next) {
     res.render('org-get-verified.views.ejs');
 }
+
+// render events
+export const renderEvents = function (req, res, next) {
+    res.render('org-view-events.views.ejs');
+}

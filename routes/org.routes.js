@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as controller from '../controllers/org.controllers.js';
-import { orgLoggedIn, isVerified } from '../utils/middleware.js';
+import { orgLoggedIn, isVerified, sendEmail } from '../utils/middleware.js';
 import asyncHandle from '../utils/asyncHandle.js';
 import passport from 'passport';
 
@@ -12,7 +12,7 @@ orgRouter.get('/', controller.renderOrgHome);
 
 // register organization
 orgRouter.get('/register', controller.renderRegisterForm);
-orgRouter.post('/', asyncHandle(controller.saveOrganization));
+orgRouter.post('/', asyncHandle(sendEmail), asyncHandle(controller.saveOrganization));
 
 // add event
 orgRouter.get('/add', orgLoggedIn, asyncHandle(isVerified), controller.renderNewEventForm);
@@ -28,5 +28,8 @@ orgRouter.get('/logout', orgLoggedIn, controller.logoutOrg);
 
 // get verified
 orgRouter.get('/get-verified', controller.renderGetVerified);
+
+// view and manage events
+orgRouter.get('/events', orgLoggedIn, asyncHandle(isVerified), controller.renderEvents);
 
 export default orgRouter;

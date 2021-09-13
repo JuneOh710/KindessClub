@@ -6,14 +6,17 @@
 </head>
 
 <body>
-    <main class="container">
-        <%- include('./partials/org-navbar.ejs') %>
+    <%- include('./partials/org-navbar.ejs') %>
+        <main class="container min-vh-100">
             <%- include('./partials/flash.ejs') %>
-                hi
-    </main>
+                <h1>Thank you for becoming our partner!</h1>
+                <h3>One of our administators will verify this organization account shortly.</h3>
 
+                <a class="btn btn-outline-success" href="/org">back to home</a>
+        </main>
 
-    <%- include('./partials/scriptTags.ejs') %>
+        <%- include('./partials/footer.ejs') %>
+            <%- include('./partials/scriptTags.ejs') %>
 </body>
 
 </html>

@@ -1,0 +1,11 @@
+verification process:
+    - once registered, send email to info@kindnessclub.com
+        - Miya goes to admin page and verify directly || ask them for a chat.
+    - until verified, org sees org-get-verified.views.ejs
+        - page will include details, code of conduct...
+
+ todo:
+    - make custom email:
+        info@kindnessclub.com
+    - make an admin page and admin account
+    
