@@ -36,5 +36,7 @@ orgRouter.get('/events', orgLoggedIn, asyncHandle(isVerified), controller.render
 // view all the organizations verification status and modify them
 orgRouter.get('/admin', controller.renderAdminPage);
 orgRouter.post('/admin/verify', controller.verifyOrg);
+orgRouter.post('/admin/invalidate', controller.invalidateOrg);
+
 
 export default orgRouter;

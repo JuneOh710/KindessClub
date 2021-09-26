@@ -62,6 +62,13 @@ export const renderAdminPage = async function (req, res, next) {
 export const verifyOrg = async function (req, res, next) {
     const filter = { _id: req.body.id };
     const update = { verified: true };
-    const org = await Organization.findOneAndUpdate(filter, update);
+    await Organization.findOneAndUpdate(filter, update);
+    res.redirect('/org/admin');
+}
+
+export const invalidateOrg = async function (req, res, next) {
+    const filter = { _id: req.body.id };
+    const update = { verified: false };
+    await Organization.findOneAndUpdate(filter, update);
     res.redirect('/org/admin');
 }
