@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./partials/org-navbar.ejs') %>
+        <main class="min-vh-100 container">
+            <h1>Events by <%= currentUser.name %>
+            </h1>
+            <% for(let event of allEvents ) { %>
+
+                <div class="card mb-3 col-sm-8">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= event.name %>
+                        </h5>
+                        <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>
+                            <% var dateList=event.date.toString().split(" ", 4) %> 
+
+                        <%= dateList[0] %>
+                            <%= dateList[1] %>
+                                <%= dateList[2] %>
+                                    <%= dateList[3] %>
+                                        <i class=" ms-3 me-2 far fa-clock"></i>
+                                <%= event.startTime %> - <%= event.endTime %>
+                        </p>
+                        <div class="d-flex">
+
+                            <p class="card-text me-4"><i class="fas fa-user-friends"></i>
+                                <%= event.registeredUsers.length %> registered
+                            </p>
+                            <form class="me-4" action="/org/events/<%= event._id %>" method="GET">
+                                <button class="btn btn-success">view event</button>
+                            </form>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <% } %>
+        </main>
+
+
+
+
+
+        <%- include('./partials/footer.ejs') %>
+            <%- include('./partials/scriptTags.ejs') %>
+</body>
+
+</html>

@@ -14,14 +14,17 @@ orgRouter.get('/', controller.renderOrgHome);
 orgRouter.get('/register', controller.renderRegisterForm);
 orgRouter.post('/', asyncHandle(sendEmail), asyncHandle(controller.saveOrganization));
 
+
+// EVENTS
 // add event
 orgRouter.get('/add', orgLoggedIn, asyncHandle(isVerified), controller.renderNewEventForm);
 orgRouter.post('/events', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.saveEvent));
-
 // view and manage events
-orgRouter.get('/events', orgLoggedIn, asyncHandle(isVerified), controller.renderEvents);
-orgRouter.get('/events/:eventId', orgLoggedIn, asyncHandle(isVerified), controller.renderEvent);
-
+orgRouter.get('/events', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.renderEvents));
+orgRouter.get('/events/:eventId', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.renderEvent));
+orgRouter.get('/events/:eventId/edit', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.renderEditForm));
+orgRouter.put('/events/:eventId', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.editEvent));
+orgRouter.delete('/events/:eventId', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.deleteEvent));
 
 // login to organization
 orgRouter.get('/login', controller.renderLoginForm);

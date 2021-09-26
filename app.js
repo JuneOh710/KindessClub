@@ -13,6 +13,7 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import flash from 'connect-flash';
 import dotenv from 'dotenv';
+import methodOverride from 'method-override';
 
 // route imports
 import router from './routes/routes.js';
@@ -43,6 +44,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(flash());
+app.use(methodOverride('_method'))
 
 // session middleware
 const oneWeek = 1000 * 60 * 60 * 24 * 7;

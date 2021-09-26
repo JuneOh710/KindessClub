@@ -19,12 +19,10 @@ export const saveEvent = async function (req, res, next) {
     await event.save();
     res.redirect(`/org/events/${event._id}`);
 }
-
-// render events
-export const renderEvents = function (req, res, next) {
-    res.render('org-view-events.views.ejs');
+export const renderEvents = async function (req, res, next) {
+    const allEvents = await Event.find({});
+    res.render('org-events.views.ejs', { allEvents });
 }
-
 export const renderEvent = async function (req, res, next) {
     const { eventId } = req.params;
     const event = await Event.findById(eventId);
@@ -32,9 +30,32 @@ export const renderEvent = async function (req, res, next) {
     console.log('====>', location);
     const dateList = date.toString().split(" ", 4);
 
-    res.render('org-event.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location });
+    res.render('org-event.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId });
 }
 
+export const renderEditForm = async function (req, res, next) {
+    const { eventId } = req.params;
+    const event = await Event.findById(eventId);
+    const { name, date, startTime, endTime, details, registeredUsers, location } = event;
+    const dateList = date.toString().split(" ", 4);
+    res.render('org-event-edit.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId });
+
+}
+
+export const editEvent = async function (req, res, next) {
+    const { eventId } = req.params;
+    const { eventName: name, eventDate: date, eventStart: startTime, eventEnd: endTime, eventDetails: details } = req.body;
+    const coordinates = req.body.eventLocationCoordinates.split(',');
+    const location = { type: req.body.eventLocationType, coordinates };
+    await Event.findByIdAndUpdate(eventId, { name, date, startTime, endTime, details, location });
+    res.redirect(`/org/events/${eventId}`);
+}
+
+export const deleteEvent = async function (req, res, next) {
+    const { eventId } = req.params;
+    await Event.findByIdAndDelete(eventId);
+    res.redirect('/org/events');
+}
 
 
 // register organization
