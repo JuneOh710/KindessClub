@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <%- include('./partials/org-navbar.ejs') %>
+        <main class="container min-vh-100">
+
+
+            <div class="row mt-md-5 mt-4 mb-5">
+                <div class="col-lg-6 mb-lg-0 mb-4">
+                    <h1 class="">
+                        <%= name %>
+                    </h1>
+
+                    <p class="ms-md-2"><i class="fas fa-calendar-alt me-2"></i>
+                        <%= dateList[0] %>
+                            <%= dateList[1] %>
+                                <%= dateList[2] %>
+                                    <%= dateList[3] %>
+                                        <i class="ms-3 me-2 far fa-clock"></i>
+                                        <%= startTime %> - <%= endTime %>
+                    </p>
+                    <p class="ms-md-2"><i class="fas fa-user-friends"></i>
+                        <%= registeredUsers.length %> registered
+                    </p>
+
+                    <h2 class="h3">Event details</h2>
+                    <p class="lead">
+                        <%= details %>
+                    </p>
+
+                    <form action="/org/events/event" method="DELETE">
+                        <button class="btn btn-danger">Delete this event</button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <div id='map' style='width: 100%; height: 75vh;'></div>
+                </div>
+            </div>
+
+        </main>
+
+
+        <% var lng=location.coordinates[0];%>
+            <% var lat=location.coordinates[1];%>
+
+                <%- include('./partials/footer.ejs') %>
+                    <%- include('./partials/scriptTags.ejs') %>
+
+
+
+                        <script>
+                            var lng = <%= lng %>;
+                            var lat = <%= lat %>;
+                            console.log(lng)
+                            mapboxgl.accessToken = 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg';
+                            const map = new mapboxgl.Map({
+                                container: 'map', // container ID
+                                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                                center: [lng, lat], // starting position [lng, lat]
+                                zoom: 15 // starting zoom
+                            });
+                            map.scrollZoom.disable()
+                            map.addControl(new mapboxgl.NavigationControl())
+
+
+                            // Create a new marker.
+                            const marker = new mapboxgl.Marker()
+                                .setLngLat([lng, lat])
+                                .addTo(map);
+                        </script>
+</body>
+
+</html>

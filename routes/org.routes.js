@@ -18,6 +18,10 @@ orgRouter.post('/', asyncHandle(sendEmail), asyncHandle(controller.saveOrganizat
 orgRouter.get('/add', orgLoggedIn, asyncHandle(isVerified), controller.renderNewEventForm);
 orgRouter.post('/events', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.saveEvent));
 
+// view and manage events
+orgRouter.get('/events', orgLoggedIn, asyncHandle(isVerified), controller.renderEvents);
+orgRouter.get('/events/:eventId', orgLoggedIn, asyncHandle(isVerified), controller.renderEvent);
+
 
 // login to organization
 orgRouter.get('/login', controller.renderLoginForm);
@@ -28,9 +32,6 @@ orgRouter.get('/logout', orgLoggedIn, controller.logoutOrg);
 
 // get verified
 orgRouter.get('/get-verified', controller.renderGetVerified);
-
-// view and manage events
-orgRouter.get('/events', orgLoggedIn, asyncHandle(isVerified), controller.renderEvents);
 
 // admin stuff
 // view all the organizations verification status and modify them

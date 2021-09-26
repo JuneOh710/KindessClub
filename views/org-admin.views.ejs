@@ -19,6 +19,10 @@
                         <div class="card-body">
                             <h5 class="card-title">
                                 <%= org.name %>
+                                    <% if (org.verified) { %>
+                                        <i class="far fa-check-square"></i>
+                                        <% } %>
+
                             </h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <%= org.email %>

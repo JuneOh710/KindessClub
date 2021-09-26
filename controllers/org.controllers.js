@@ -1,17 +1,41 @@
-import passport from "passport";
 import Organization from "../models/organization.js";
+import Event from "../models/event.js";
 
 export const renderOrgHome = function (req, res, next) {
     res.render('org.views.ejs');
 }
 
+// EVENTS
 // add event
 export const renderNewEventForm = function (req, res, next) {
     res.render('org-add-event.views.ejs');
 }
 export const saveEvent = async function (req, res, next) {
-    res.render('org.views.ejs');
+    const { eventName: name, eventDate: date, eventStart: startTime, eventEnd: endTime, eventDetails: details } = req.body;
+    const coordinates = req.body.eventLocationCoordinates.split(',');
+    const location = { type: req.body.eventLocationType, coordinates };
+    const organization = req.user._id;
+    const event = new Event({ name, date, startTime, endTime, details, location, organization });
+    await event.save();
+    res.redirect(`/org/events/${event._id}`);
 }
+
+// render events
+export const renderEvents = function (req, res, next) {
+    res.render('org-view-events.views.ejs');
+}
+
+export const renderEvent = async function (req, res, next) {
+    const { eventId } = req.params;
+    const event = await Event.findById(eventId);
+    const { name, date, startTime, endTime, details, registeredUsers, location } = event;
+    console.log('====>', location);
+    const dateList = date.toString().split(" ", 4);
+
+    res.render('org-event.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location });
+}
+
+
 
 // register organization
 export const renderRegisterForm = function (req, res, next) {
@@ -44,11 +68,6 @@ export const logoutOrg = function (req, res, next) {
 // get verified
 export const renderGetVerified = function (req, res, next) {
     res.render('org-get-verified.views.ejs');
-}
-
-// render events
-export const renderEvents = function (req, res, next) {
-    res.render('org-view-events.views.ejs');
 }
 
 // render admin page
