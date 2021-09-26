@@ -32,4 +32,9 @@ orgRouter.get('/get-verified', controller.renderGetVerified);
 // view and manage events
 orgRouter.get('/events', orgLoggedIn, asyncHandle(isVerified), controller.renderEvents);
 
+// admin stuff
+// view all the organizations verification status and modify them
+orgRouter.get('/admin', controller.renderAdminPage);
+orgRouter.post('/admin/verify', controller.verifyOrg);
+
 export default orgRouter;

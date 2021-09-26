@@ -50,3 +50,18 @@ export const renderGetVerified = function (req, res, next) {
 export const renderEvents = function (req, res, next) {
     res.render('org-view-events.views.ejs');
 }
+
+// render admin page
+export const renderAdminPage = async function (req, res, next) {
+    const allOrgs = await Organization.find({});
+    console.log(allOrgs)
+    res.render('org-admin.views.ejs', { allOrgs });
+}
+
+// verify org
+export const verifyOrg = async function (req, res, next) {
+    const filter = { _id: req.body.id };
+    const update = { verified: true };
+    const org = await Organization.findOneAndUpdate(filter, update);
+    res.redirect('/org/admin');
+}
