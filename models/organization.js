@@ -1,7 +1,12 @@
 import mongoose from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 
+// todo: get rid of user schema and just make everything an organization with userTypes: organization, user, admin
 const organizationSchema = new mongoose.Schema({
+    userType: {
+        type: String,
+        required: true,
+    },
     verified: {
         type: Boolean,
         required: true,

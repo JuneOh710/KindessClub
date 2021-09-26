@@ -10,10 +10,6 @@ const orgRouter = Router();
 
 orgRouter.get('/', controller.renderOrgHome);
 
-// register organization
-orgRouter.get('/register', controller.renderRegisterForm);
-orgRouter.post('/', asyncHandle(sendEmail), asyncHandle(controller.saveOrganization));
-
 
 // EVENTS
 // add event
@@ -26,9 +22,15 @@ orgRouter.get('/events/:eventId/edit', orgLoggedIn, asyncHandle(isVerified), asy
 orgRouter.put('/events/:eventId', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.editEvent));
 orgRouter.delete('/events/:eventId', orgLoggedIn, asyncHandle(isVerified), asyncHandle(controller.deleteEvent));
 
+
+// register organization
+orgRouter.get('/register', controller.renderRegisterForm);
+orgRouter.post('/', asyncHandle(sendEmail), asyncHandle(controller.saveOrganization));
+
+
 // login to organization
 orgRouter.get('/login', controller.renderLoginForm);
-orgRouter.post('/login', passport.authenticate('local', { failureRedirect: '/org/login', failureFlash: true }), controller.redirectOrgHome);
+orgRouter.post('/login', passport.authenticate('organizationLocal', { failureRedirect: '/org/login', failureFlash: true }), controller.redirectOrgHome);
 
 // logout from org account
 orgRouter.get('/logout', orgLoggedIn, controller.logoutOrg);

@@ -2,9 +2,29 @@ import nodemailer from 'nodemailer';
 
 
 export const orgLoggedIn = function (req, res, next) {
+
     if (!req.isAuthenticated()) {
         req.flash('error', 'you must be signed in');
         return res.redirect('/org/login')
+    }
+
+    if (req.user.userType != "organization") {
+        req.flash('error', 'you are not an organization');
+        return res.redirect('/')
+    }
+
+    next();
+}
+
+export const userLoggedIn = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        req.flash('error', 'you must be signed in');
+        return res.redirect('/users/login')
+    }
+
+    if (req.user.userType != "user") {
+        req.flash('error', 'you are not a general user');
+        return res.redirect('/')
     }
     next();
 }
@@ -14,6 +34,7 @@ export const isVerified = async function (req, res, next) {
         req.flash('error', 'this account is not verified');
         return res.redirect('/org/get-verified');
     }
+
     next();
 }
 
