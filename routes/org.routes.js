@@ -38,11 +38,5 @@ orgRouter.get('/logout', orgLoggedIn, controller.logoutOrg);
 // get verified
 orgRouter.get('/get-verified', controller.renderGetVerified);
 
-// admin stuff
-// view all the organizations verification status and modify them
-orgRouter.get('/admin', isAdmin, controller.renderAdminPage);
-orgRouter.post('/admin/verify', isAdmin, controller.verifyOrg);
-orgRouter.post('/admin/invalidate', isAdmin, controller.invalidateOrg);
-
 
 export default orgRouter;

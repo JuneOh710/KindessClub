@@ -2,6 +2,7 @@ import { Router } from 'express';
 import asyncHandle from '../utils/asyncHandle.js';
 import passport from 'passport';
 import * as middleware from '../utils/middleware.js';
+import * as controller from '../controllers/org.controllers.js';
 import Organization from '../models/organization.js';
 
 const router = Router();
@@ -44,6 +45,12 @@ router.get('/users/logout', (req, res, next) => {
   req.flash('success', 'logged out');
   res.redirect('/');
 })
+
+
+// admin stuff
+router.get('/admin', middleware.isAdmin, controller.renderAdminPage);
+router.post('/admin/verify', middleware.isAdmin, controller.verifyOrg);
+router.post('/admin/invalidate', middleware.isAdmin, controller.invalidateOrg);
 
 
 export default router;
