@@ -65,7 +65,7 @@ export const renderRegisterForm = function (req, res, next) {
 export const saveOrganization = async function (req, res, next) {
     const { orgName: name, orgEmail: email, orgPassword: password } = req.body;
     // const location = { type: req.body.orgLocationType, coordinates: req.body.orgLocationCoordinates.split(',') }
-    const organization = new Organization({ name, email, username: email, location, userType: "organization" });
+    const organization = new Organization({ name, email, username: email, userType: "organization" });
     await Organization.register(organization, password)
     res.redirect('/org')
 }
