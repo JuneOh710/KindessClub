@@ -9,7 +9,6 @@ import mongoose from 'mongoose';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import Organization from './models/organization.js';
-import User from './models/user.js';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import flash from 'connect-flash';
@@ -71,30 +70,9 @@ app.use(session({
 // auth middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-const orgAuthMiddleware = function (req, res, next) {
-  passport.use('organizationLocal', new LocalStrategy(Organization.authenticate()));
-  passport.serializeUser(Organization.serializeUser());
-  passport.deserializeUser(Organization.deserializeUser());
-  next();
-}
-passport.use('organizationLocal', new LocalStrategy(
-  function (username, password, done) {
-    Organization.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
-      return done(null, user);
-    });
-  }
-));
-
-
-
-passport.use('userLocal', new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.use(new LocalStrategy(Organization.authenticate()));
+passport.serializeUser(Organization.serializeUser());
+passport.deserializeUser(Organization.deserializeUser());
 
 
 // flash middleware
@@ -111,7 +89,7 @@ app.use(function (req, res, next) {
 app.use('/', router);
 app.use('/events', eventsRouter);
 app.use('/projects', projectsRouter);
-app.use('/org', orgAuthMiddleware, orgRouter);
+app.use('/org', orgRouter);
 
 
 app.all('*', function (req, res, next) {

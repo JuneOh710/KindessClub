@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import * as controller from '../controllers/org.controllers.js';
-import { orgLoggedIn, isVerified, sendEmail } from '../utils/middleware.js';
+import { orgLoggedIn, isVerified, sendEmail, isAdmin } from '../utils/middleware.js';
 import asyncHandle from '../utils/asyncHandle.js';
 import passport from 'passport';
 
@@ -40,9 +40,9 @@ orgRouter.get('/get-verified', controller.renderGetVerified);
 
 // admin stuff
 // view all the organizations verification status and modify them
-orgRouter.get('/admin', controller.renderAdminPage);
-orgRouter.post('/admin/verify', controller.verifyOrg);
-orgRouter.post('/admin/invalidate', controller.invalidateOrg);
+orgRouter.get('/admin', isAdmin, controller.renderAdminPage);
+orgRouter.post('/admin/verify', isAdmin, controller.verifyOrg);
+orgRouter.post('/admin/invalidate', isAdmin, controller.invalidateOrg);
 
 
 export default orgRouter;

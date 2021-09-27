@@ -65,7 +65,7 @@ export const renderRegisterForm = function (req, res, next) {
 export const saveOrganization = async function (req, res, next) {
     const { orgName: name, orgEmail: email, orgPassword: password } = req.body;
     const location = { type: req.body.orgLocationType, coordinates: req.body.orgLocationCoordinates.split(',') }
-    const organization = new Organization({ name, email, username: email, location });
+    const organization = new Organization({ name, email, username: email, location, userType: "organization" });
     await Organization.register(organization, password)
     res.redirect('/org')
 }
@@ -93,8 +93,7 @@ export const renderGetVerified = function (req, res, next) {
 
 // render admin page
 export const renderAdminPage = async function (req, res, next) {
-    const allOrgs = await Organization.find({});
-    console.log(allOrgs)
+    const allOrgs = await Organization.find({ userType: "organization" });
     res.render('org-admin.views.ejs', { allOrgs });
 }
 

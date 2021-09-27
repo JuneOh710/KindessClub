@@ -8,6 +8,10 @@ export const orgLoggedIn = function (req, res, next) {
         return res.redirect('/org/login')
     }
 
+    if (req.user.userType == "admin") {
+        return next();
+    }
+
     if (req.user.userType != "organization") {
         req.flash('error', 'you are not an organization');
         return res.redirect('/')
@@ -22,7 +26,11 @@ export const userLoggedIn = function (req, res, next) {
         return res.redirect('/users/login')
     }
 
-    if (req.user.userType != "user") {
+    if (req.user.userType == "admin") {
+        return next();
+    }
+
+    if (req.user.userType != "general") {
         req.flash('error', 'you are not a general user');
         return res.redirect('/')
     }
@@ -30,11 +38,27 @@ export const userLoggedIn = function (req, res, next) {
 }
 
 export const isVerified = async function (req, res, next) {
+    if (req.user.userType == "admin") {
+        return next();
+    }
+
     if (!req.user.verified) {
         req.flash('error', 'this account is not verified');
         return res.redirect('/org/get-verified');
     }
 
+    next();
+}
+
+export const isAdmin = function (req, res, next) {
+    if (!req.isAuthenticated()) {
+        req.flash('error', 'you must be signed in');
+        return res.redirect('/users/login')
+    }
+    if (req.user.userType != "admin") {
+        req.flash('error', 'access denied');
+        return res.redirect('/')
+    }
     next();
 }
 

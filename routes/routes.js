@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import User from '../models/user.js';
 import asyncHandle from '../utils/asyncHandle.js';
 import passport from 'passport';
 import * as middleware from '../utils/middleware.js';
+import Organization from '../models/organization.js';
 
 const router = Router();
 router.get('/', function (req, res, next) {
@@ -17,12 +17,14 @@ router.get('/dashboard', middleware.userLoggedIn, function (req, res, next) {
 router.get('/users/register', (req, res, next) => {
   res.render('user-register.views.ejs')
 });
-
+// save user account
 router.post('/users', asyncHandle(async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
+  const name = firstName + " " + lastName;
   const username = email;
-  const user = new User({ firstName, lastName, email, username });
-  await User.register(user, password);
+  const userType = "general";
+  const user = new Organization({ name, email, username, userType });
+  await Organization.register(user, password);
   res.redirect('/');
 }));
 
@@ -31,7 +33,7 @@ router.get('/users/login', (req, res, next) => {
   res.render('user-login.views.ejs');
 })
 
-router.post('/users/login', passport.authenticate('userLocal', { failureRedirect: '/users/login', failureFlash: true }), (req, res, next) => {
+router.post('/users/login', passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: true }), (req, res, next) => {
   req.flash('success', 'logged in successfuly')
   res.redirect('/dashboard')
 })
