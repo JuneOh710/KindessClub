@@ -30,7 +30,7 @@ orgRouter.post('/', asyncHandle(sendEmail), asyncHandle(controller.saveOrganizat
 
 // login to organization
 orgRouter.get('/login', controller.renderLoginForm);
-orgRouter.post('/login', passport.authenticate('organizationLocal', { failureRedirect: '/org/login', failureFlash: true }), controller.redirectOrgHome);
+orgRouter.post('/login', passport.authenticate('local', { failureRedirect: '/org/login', failureFlash: true }), controller.redirectOrgHome);
 
 // logout from org account
 orgRouter.get('/logout', orgLoggedIn, controller.logoutOrg);
