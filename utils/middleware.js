@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv'
 
-
+dotenv.config();
 export const orgLoggedIn = function (req, res, next) {
 
     if (!req.isAuthenticated()) {
@@ -72,7 +73,7 @@ export const sendEmail = async function (req, res, next) {
         secure: false, // true for 465, false for other ports
         auth: {
             user: 'info.kindnessclub@gmail.com',
-            pass: 'crackingthecodinginterview6thedition'
+            pass: process.env.ADMIN_EMAIL
         },
     });
     const { orgName: name, orgEmail: email } = req.body;
