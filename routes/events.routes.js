@@ -5,9 +5,14 @@ import * as middleware from '../utils/middleware.js';
 
 const eventsRouter = Router();
 eventsRouter.get('/', middleware.userLoggedIn, asyncHandle(async function (req, res, next) {
-    const events = await Event.find({});
-
-    res.render('events.views.ejs', { events });
+    const allEvents = await Event.find({});
+    let { pageNumber } = req.query;
+    if (!pageNumber) {
+        pageNumber = 1;
+    }
+    const fourEvents = allEvents.slice(4 * (pageNumber - 1), 4 * pageNumber);
+    console.log(allEvents.length)
+    res.render('events.views.ejs', { pageNumber, fourEvents, allEvents });
 }));
 
 eventsRouter.get('/:eventId', middleware.userLoggedIn, asyncHandle(async function (req, res, next) {
