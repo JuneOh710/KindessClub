@@ -4,15 +4,19 @@ import passport from 'passport';
 import * as middleware from '../utils/middleware.js';
 import * as controller from '../controllers/org.controllers.js';
 import Organization from '../models/organization.js';
+import Event from '../models/event.js';
 
 const router = Router();
 router.get('/', function (req, res, next) {
   res.render('home.views.ejs');
 });
 
-router.get('/dashboard', middleware.userLoggedIn, function (req, res, next) {
-  res.render('dashboard.views.ejs');
-});
+router.get('/dashboard', middleware.userLoggedIn, asyncHandle(async (req, res, next) => {
+  const allEvents = await Event.find({});
+  const threeEvents = allEvents.slice(0, 3);
+  // console.log(threeEvents)
+  res.render('dashboard.views.ejs', { threeEvents });
+}));
 
 // register user account
 router.get('/users/register', (req, res, next) => {
