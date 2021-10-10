@@ -4,6 +4,7 @@ import Event from '../models/event.js';
 import * as middleware from '../utils/middleware.js';
 
 const eventsRouter = Router();
+// all events page
 eventsRouter.get('/', middleware.userLoggedIn, asyncHandle(async function (req, res, next) {
     const allEvents = await Event.find({});
     let { pageNumber } = req.query;

@@ -34,13 +34,15 @@
                 <div class="col-md-7">
                     <div id='map' style='width: 100%; height: 75vh;'></div>
                 </div>
+
+
                 <!-- event card list -->
                 <div class="col-md-5 event-list">
                     <% for( let event of fourEvents) { %>
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">
+                                <h5 class="eventName card-title">
                                     <%= event.name %>
                                 </h5>
                                 <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>
@@ -51,11 +53,18 @@
                                 <a href="/events/<%= event._id %>" class="btn btn-success btn-sm">view event</a>
                             </div>
                         </div>
+                        <div class="eventCoordinate" hidden>
+                            <%= event.location.coordinates %>
+                        </div>
+                        <div class="eventId" hidden>
+                            <%= event._id %>
+                        </div>
                         <% } %>
 
 
-                            <nav class="mt-2" aria-label="Page navigation">
 
+
+                            <nav class="mt-2" aria-label="Page navigation">
                                 <ul class="pagination">
                                     <!-- previous button -->
                                     <% if (pageNumber==1) { %>
@@ -101,21 +110,44 @@
             </div>
 
 
-
-
-
         </main>
 
 
 
         <%- include('./partials/footer.ejs') %>
             <%- include('./partials/scriptTags.ejs') %>
-                <%- include('./partials/mapbox.ejs') %>
 
+                <% var events=allEvents; %>
+                    <script>
+
+                        mapboxgl.accessToken = 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg';
+                        const map = new mapboxgl.Map({
+                            container: 'map', // container ID
+                            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                            center: [-79.347015, 43.651070], // starting position [lng, lat]
+                            zoom: 10 // starting zoom
+                        });
+                        const eventCoordinates = document.getElementsByClassName('eventCoordinate');
+                        const eventIds = document.getElementsByClassName('eventId');
+                        const eventNames = document.getElementsByClassName('eventName');
+
+                        for (let i = 0; i < eventIds.length; i++) {
+                            let popup = new mapboxgl.Popup({ offset: 25, focusAfterOpen: false }).setHTML(
+                                `<a href=/events/${eventIds[i].textContent.trim()}>${eventNames[i].textContent}</a>`)
+                            let marker = new mapboxgl.Marker()
+                                .setLngLat(eventCoordinates[i].textContent.split(','))
+                                .setPopup(popup)
+                                .addTo(map);
+                        }
+
+                        map.scrollZoom.disable()
+                        map.addControl(new mapboxgl.NavigationControl())
+                    </script>
                     <script>
                         const pageName = "events"
                         const navLink = document.getElementById(pageName);
                         navLink.classList.add("active")
+
                     </script>
 </body>
 
