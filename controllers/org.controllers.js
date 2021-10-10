@@ -1,5 +1,6 @@
 import Organization from "../models/organization.js";
 import Event from "../models/event.js";
+import mongoose from "mongoose";
 
 export const renderOrgHome = function (req, res, next) {
     res.render('org.views.ejs');
@@ -17,19 +18,18 @@ export const saveEvent = async function (req, res, next) {
     const organization = req.user._id;
     const event = new Event({ name, date, startTime, endTime, details, location, organization });
     await event.save();
-    res.redirect(`/org/events/${event._id}`);
+    res.redirect(`/org/${organization}/events/${event._id}`);
 }
 export const renderEvents = async function (req, res, next) {
-    const allEvents = await Event.find({});
+    const { orgId } = req.params;
+    const allEvents = await Event.find({ organization: mongoose.Types.ObjectId(orgId) });
     res.render('org-events.views.ejs', { allEvents });
 }
 export const renderEvent = async function (req, res, next) {
     const { eventId } = req.params;
     const event = await Event.findById(eventId);
     const { name, date, startTime, endTime, details, registeredUsers, location } = event;
-    console.log('====>', location);
     const dateList = date.toString().split(" ", 4);
-
     res.render('org-event.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId });
 }
 
@@ -39,22 +39,21 @@ export const renderEditForm = async function (req, res, next) {
     const { name, date, startTime, endTime, details, registeredUsers, location } = event;
     const dateList = date.toString().split(" ", 4);
     res.render('org-event-edit.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId });
-
 }
 
 export const editEvent = async function (req, res, next) {
-    const { eventId } = req.params;
+    const { eventId, orgId } = req.params;
     const { eventName: name, eventDate: date, eventStart: startTime, eventEnd: endTime, eventDetails: details } = req.body;
     const coordinates = req.body.eventLocationCoordinates.split(',');
     const location = { type: req.body.eventLocationType, coordinates };
     await Event.findByIdAndUpdate(eventId, { name, date, startTime, endTime, details, location });
-    res.redirect(`/org/events/${eventId}`);
+    res.redirect(`/org/${orgId}/events/${eventId}`);
 }
 
 export const deleteEvent = async function (req, res, next) {
-    const { eventId } = req.params;
+    const { eventId, orgId } = req.params;
     await Event.findByIdAndDelete(eventId);
-    res.redirect('/org/events');
+    res.redirect(`/org/${orgId}/events`);
 }
 
 
@@ -102,12 +101,12 @@ export const verifyOrg = async function (req, res, next) {
     const filter = { _id: req.body.id };
     const update = { verified: true };
     await Organization.findOneAndUpdate(filter, update);
-    res.redirect('/org/admin');
+    res.redirect('/admin');
 }
 
 export const invalidateOrg = async function (req, res, next) {
     const filter = { _id: req.body.id };
     const update = { verified: false };
     await Organization.findOneAndUpdate(filter, update);
-    res.redirect('/org/admin');
+    res.redirect('/admin');
 }
