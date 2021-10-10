@@ -73,7 +73,7 @@ export const sendEmail = async function (req, res, next) {
         secure: false, // true for 465, false for other ports
         auth: {
             user: 'info.kindnessclub@gmail.com',
-            pass: process.env.ADMIN_EMAIL
+            pass: process.env.ADMIN_PW
         },
     });
     const { orgName: name, orgEmail: email } = req.body;
