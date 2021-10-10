@@ -14,8 +14,9 @@ router.get('/', function (req, res, next) {
 router.get('/dashboard', middleware.userLoggedIn, asyncHandle(async (req, res, next) => {
   const allEvents = await Event.find({});
   const threeEvents = allEvents.slice(0, 3);
-  // console.log(threeEvents)
-  res.render('dashboard.views.ejs', { threeEvents });
+  const user = await Organization.findById(req.user._id).populate('registeredEvents');
+  const registeredEvents = user.registeredEvents;
+  res.render('dashboard.views.ejs', { threeEvents, registeredEvents });
 }));
 
 // register user account

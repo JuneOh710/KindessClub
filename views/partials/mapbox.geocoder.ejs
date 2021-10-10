@@ -40,12 +40,15 @@
         // get input field <eventLocation>
         const locationType = document.getElementById(locationTypeId);
         const locationCoordinates = document.getElementById(locationCoordinatesId);
+        const address = document.getElementById('address')
         // Listen for the `result` event from the Geocoder // `result` event is triggered when a user makes a selection
         //  Add a marker at the result's coordinates
         geocoder.on('result', ({ result }) => {
+            // console.log('result ===>', result.properties.address);
             map.getSource('single-point').setData(result.geometry);
             locationType.value = result.geometry.type;
             locationCoordinates.value = result.geometry.coordinates;
+            address.value = result.properties.address;
         });
     });
     map.scrollZoom.disable();

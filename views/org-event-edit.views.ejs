@@ -8,7 +8,7 @@
 <body>
     <%- include('./partials/org-navbar.ejs') %>
         <% var monthMap={ Jan: '01' , Feb: '02' , Mar: '03' , Apr: '04' , May: '05' , Jun: '06' , Jul: '07' , Aug: '08'
-            , Sep: '09' , Oct: '10' , Nov: '11' , Dec: '12' } %>
+            , Sep: '09' , Oct: '10' , Nov: '11' , Dec: '12' }; %>
 
 
             <main class="min-vh-100 container">
@@ -147,10 +147,11 @@
                     <!-- map -->
                     <label for="eventLocation" class="form-label">Event location (search the location and
                         hit 'enter')</label>
-                    <input id="eventLocationType" name="eventLocationType" type="hidden"
-                        value="<%= location.coordinates%>" class="form-control" required />
-                    <input id="eventLocationCoordinates" name="eventLocationCoordinates" type="hidden" value=""
+                    <input id="eventLocationType" name="eventLocationType" type="hidden" value="<%= location.type%>"
                         class="form-control" required />
+                    <input id="eventLocationCoordinates" name="eventLocationCoordinates" type="hidden"
+                        value="<%= location.coordinates%>" class="form-control" required />
+                    <input type="hidden" id="address" name="address" value="<%= address %>">
                     <div class="d-flex justify-content-center">
 
                         <div id="map" style='width: 99%; height: 40vh;'></div>

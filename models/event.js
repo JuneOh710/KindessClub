@@ -41,6 +41,10 @@ const eventSchema = new mongoose.Schema({
             required: true
         }
     },
+    address: {
+        type: String,
+        required: true
+    },
     organization: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Organization',

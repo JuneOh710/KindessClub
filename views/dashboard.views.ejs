@@ -75,11 +75,26 @@
                                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                         <div class="accordion-body">
 
+                                            <% for(let event of registeredEvents) { %>
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">
+                                                            <%= event.name %>
+                                                        </h5>
+                                                        <p class="card-text"><i class="fas fa-calendar-alt me-2"></i>
+                                                            <%= event.date.toString().split(" ", 4).join(" ")%>
+                                                                <i class=" ms-3 me-2 far fa-clock"></i>
+                                                                <%= event.startTime %> - <%= event.endTime %>
+                                                        </p>
 
-                                            <% for(let event of currentUser.registeredEvents) { %>
-
+                                                        <a href="/events/<%= event._id %>"
+                                                            class="btn btn-success btn-sm">view
+                                                            event</a>
+                                                    </div>
+                                                </div>
                                                 <% } %>
-                                                    <div class="card">
+
+                                                    <!-- <div class="card">
                                                         <div class="card-body">
                                                             <h5 class="card-title">event name or description
                                                             </h5>
@@ -92,21 +107,7 @@
                                                             <a href="/events/event" class="btn btn-success btn-sm">view
                                                                 event</a>
                                                         </div>
-                                                    </div>
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">event name or description
-                                                            </h5>
-                                                            <p class="card-text"><i
-                                                                    class="fas fa-calendar-alt me-2"></i>2001-09-18
-                                                                <i class="ms-3 me-2 far fa-clock"></i>9:30 am -
-                                                                2:00 pm
-                                                            </p>
-
-                                                            <a href="/events/event" class="btn btn-success btn-sm">view
-                                                                event</a>
-                                                        </div>
-                                                    </div>
+                                                    </div> -->
 
                                         </div>
                                     </div>

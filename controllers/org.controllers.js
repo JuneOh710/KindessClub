@@ -12,11 +12,11 @@ export const renderNewEventForm = function (req, res, next) {
     res.render('org-add-event.views.ejs');
 }
 export const saveEvent = async function (req, res, next) {
-    const { eventName: name, eventDate: date, eventStart: startTime, eventEnd: endTime, eventDetails: details } = req.body;
+    const { eventName: name, eventDate: date, eventStart: startTime, eventEnd: endTime, eventDetails: details, address } = req.body;
     const coordinates = req.body.eventLocationCoordinates.split(',');
     const location = { type: req.body.eventLocationType, coordinates };
     const organization = req.user._id;
-    const event = new Event({ name, date, startTime, endTime, details, location, organization });
+    const event = new Event({ name, date, startTime, endTime, details, location, organization, address });
     await event.save();
     res.redirect(`/org/${organization}/events/${event._id}`);
 }
@@ -28,9 +28,9 @@ export const renderEvents = async function (req, res, next) {
 export const renderEvent = async function (req, res, next) {
     const { eventId } = req.params;
     const event = await Event.findById(eventId);
-    const { name, date, startTime, endTime, details, registeredUsers, location } = event;
+    const { name, date, startTime, endTime, details, registeredUsers, location, address } = event;
     const dateList = date.toString().split(" ", 4);
-    res.render('org-event.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId });
+    res.render('org-event.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId, address });
 }
 
 export const renderEditForm = async function (req, res, next) {
@@ -43,16 +43,22 @@ export const renderEditForm = async function (req, res, next) {
 
 export const editEvent = async function (req, res, next) {
     const { eventId, orgId } = req.params;
-    const { eventName: name, eventDate: date, eventStart: startTime, eventEnd: endTime, eventDetails: details } = req.body;
+    const { eventName: name, eventDate: date, eventStart: startTime, eventEnd: endTime, eventDetails: details, address } = req.body;
     const coordinates = req.body.eventLocationCoordinates.split(',');
     const location = { type: req.body.eventLocationType, coordinates };
-    await Event.findByIdAndUpdate(eventId, { name, date, startTime, endTime, details, location });
+    await Event.findByIdAndUpdate(eventId, { name, date, startTime, endTime, details, location, address });
     res.redirect(`/org/${orgId}/events/${eventId}`);
 }
 
 export const deleteEvent = async function (req, res, next) {
     const { eventId, orgId } = req.params;
-    await Event.findByIdAndDelete(eventId);
+    const event = await Event.findByIdAndDelete(eventId);
+    console.log('event===>', event)
+    for (let userId of event.registeredUsers) {
+        let user = await Organization.findById(userId);
+        user.registeredEvents.remove(event._id);
+        await user.save();
+    }
     res.redirect(`/org/${orgId}/events`);
 }
 
