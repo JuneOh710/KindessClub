@@ -36,9 +36,9 @@ export const renderEvent = async function (req, res, next) {
 export const renderEditForm = async function (req, res, next) {
     const { eventId } = req.params;
     const event = await Event.findById(eventId);
-    const { name, date, startTime, endTime, details, registeredUsers, location } = event;
+    const { name, date, startTime, endTime, details, registeredUsers, location, address } = event;
     const dateList = date.toString().split(" ", 4);
-    res.render('org-event-edit.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId });
+    res.render('org-event-edit.views.ejs', { name, dateList, startTime, endTime, details, registeredUsers, location, eventId, address });
 }
 
 export const editEvent = async function (req, res, next) {
