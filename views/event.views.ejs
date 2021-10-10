@@ -49,13 +49,13 @@
                 <% var lng=event.location.coordinates[0]; %>
                     <% var lat=event.location.coordinates[1]; %>
                         <script>
-                            var Lng = <%= lng %>;
-                            var Lat = <%= lat %>;
+                            var Lng = '<%= lng %>';
+                            var Lat = '<%= lat %>';
                             mapboxgl.accessToken = 'pk.eyJ1IjoianVuZW9oNzEwIiwiYSI6ImNrcm05dzd2YzdyZWQydm1ueXEzZmFkY2kifQ.AvI0q6S-AIRJgbIOz7ZBHg';
                             const map = new mapboxgl.Map({
                                 container: 'map', // container ID
                                 style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                                center: [Lng, Lat], // starting position [lng, lat]
+                                center: [parseFloat(Lng), parseFloat(Lat)], // starting position [lng, lat]
                                 zoom: 15 // starting zoom
                             });
                             const marker = new mapboxgl.Marker()
@@ -63,7 +63,6 @@
                                 .addTo(map);
                             map.scrollZoom.disable()
                             map.addControl(new mapboxgl.NavigationControl())
-
                         </script>
 </body>
 
