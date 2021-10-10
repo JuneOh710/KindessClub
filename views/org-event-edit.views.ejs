@@ -15,8 +15,8 @@
 
 
 
-                <form class="row g-3 needs-validation mt-sm-3" action="/org/events/<%= eventId%>?_method=PUT"
-                    method="POST" novalidate>
+                <form class="row g-3 needs-validation mt-sm-3"
+                    action="/org/<%= currentUser._id%>/events/<%= eventId%>?_method=PUT" method="POST" novalidate>
                     <!-- first row -->
                     <!-- event name -->
                     <div class="col-md-4">
@@ -145,9 +145,10 @@
 
 
                     <!-- map -->
-                    <label for="eventLocation" class="form-label">Event location</label>
-                    <input id="eventLocationType" name="eventLocationType" type="hidden" value="" class="form-control"
-                        required />
+                    <label for="eventLocation" class="form-label">Event location (search the location and
+                        hit 'enter')</label>
+                    <input id="eventLocationType" name="eventLocationType" type="hidden"
+                        value="<%= location.coordinates%>" class="form-control" required />
                     <input id="eventLocationCoordinates" name="eventLocationCoordinates" type="hidden" value=""
                         class="form-control" required />
                     <div class="d-flex justify-content-center">

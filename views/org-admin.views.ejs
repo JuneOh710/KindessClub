@@ -29,15 +29,14 @@
                             </h6>
 
                             <% if (org.verified) { %>
-                                <form action="/org/admin/invalidate" method="POST">
+                                <form action="/admin/invalidate" method="POST">
                                     <input type="text" value="<%= org._id %>" name="id" hidden>
                                     <button class="btn btn-outline-danger">invalidate</button>
                                 </form>
                                 <% } else { %>
-                                    <form action="/org/admin/verify" method="POST">
+                                    <form action="/admin/verify" method="POST">
                                         <input type="text" value="<%= org._id %>" name="id" hidden>
-                                        <button href="/org/admin/verify"
-                                            class="card-link btn btn-outline-success">Verify</>
+                                        <button href="/admin/verify" class="card-link btn btn-outline-success">Verify</>
                                     </form>
                                     <% } %>
                         </div>

@@ -34,15 +34,15 @@
                     </p>
 
                     <div class="d-flex">
-                        <form class="me-1" action="/org/events/<%= eventId %>/edit" method="get">
+                        <form class="me-1" action="/org/<%= currentUser._id %>/events/<%= eventId %>/edit" method="get">
                             <button class="btn btn-outline-success">Edit event</button>
                         </form>
-                        <form action="/org/events/<%= eventId %>?_method=DELETE" method="POST">
+                        <form action="/org/<%= currentUser._id %>/events/<%= eventId %>?_method=DELETE" method="POST">
                             <button class="btn btn-outline-danger">Delete event</button>
                         </form>
                     </div>
 
-                    <a class="mt-3 d-block" href="/org/events">back to all events</a>
+                    <a class="mt-3 d-block" href="/org/<%= currentUser._id %>/events">back to all events</a>
 
                 </div>
                 <!-- map -->

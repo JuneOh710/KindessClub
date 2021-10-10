@@ -23,11 +23,11 @@
                             account</a>
                         <a href="/org/login" class="btn btn-outline-success">Login to account</a>
                         <% } else { %>
-                            <a href="/org/add" class="btn btn-outline-success mb-2">Add an event by <%= currentUser.name
-                                    %>
+                            <a href="/org/<%= currentUser._id %>/add" class="btn btn-outline-success mb-2">Add an event
+                                by <%= currentUser.name %>
                             </a>
-                            <a href="/org/events" class="btn btn-outline-success">View events added by <%=
-                                    currentUser.name %> </a>
+                            <a href="/org/<%= currentUser._id %>/events" class="btn btn-outline-success">View events
+                                added by <%= currentUser.name %> </a>
                             <% } %>
                 </div>
             </div>

@@ -8,8 +8,16 @@
 <body>
     <%- include('./partials/org-navbar.ejs') %>
         <main class="min-vh-100 container">
-            <h1>Events by <%= currentUser.name %>
+
+            <h1 class="">Events by <%= currentUser.name %>
             </h1>
+            <div class="mb-2">
+                <a href="/org/<%= currentUser._id%>/add" class="btn btn-outline-success">Add new event</a>
+            </div>
+
+
+
+
             <% for(let event of allEvents ) { %>
 
                 <div class="card mb-3 col-sm-8">
@@ -32,7 +40,8 @@
                             <p class="card-text me-4"><i class="fas fa-user-friends"></i>
                                 <%= event.registeredUsers.length %> registered
                             </p>
-                            <form class="me-4" action="/org/events/<%= event._id %>" method="GET">
+                            <form class="me-4" action="/org/<%= currentUser._id %>/events/<%= event._id %>"
+                                method="GET">
                                 <button class="btn btn-success">view event</button>
                             </form>
 

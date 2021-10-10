@@ -13,7 +13,8 @@
 
 
 
-            <form class="row g-3 needs-validation mt-sm-3" action="/org/events" method="POST" novalidate>
+            <form class="row g-3 needs-validation mt-sm-3" action="/org/<%= currentUser._id %>/events" method="POST"
+                novalidate>
                 <!-- first row -->
                 <!-- event name -->
                 <div class="col-md-4">
@@ -157,6 +158,7 @@
 
                 <!-- fourth row -->
                 <div class="d-flex justify-content-end">
+                    <a href="/org" class="btn btn-outline-secondary me-2">Cancel</a>
                     <button class="btn btn-success" type="submit">Add event</button>
                 </div>
             </form>
